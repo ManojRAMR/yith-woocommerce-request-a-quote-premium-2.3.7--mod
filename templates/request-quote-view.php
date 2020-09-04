@@ -160,7 +160,6 @@ else :
 								<?php echo apply_filters('yith_ywraq_item_remove_link', sprintf('<a href="#"  data-remove-item="%s" data-wp_nonce="%s"  data-product_id="%d" class="yith-ywraq-item-remove remove" title="%s">&times;</a>', esc_attr($key), esc_attr(wp_create_nonce('remove-request-quote-' . $product_id)), esc_attr($product_id), esc_attr__('Remove this item', 'yith-woocommerce-request-a-quote')), $key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 								?>
 							</td>
-							<!-- MRR - product image add originaly without FPD design -->
 							<?php
 
 
@@ -169,30 +168,15 @@ else :
 								<td class="product-thumbnail">
 									<?php
 									$thumbnail = $_product->get_image();
-									global $product, $woocommerce;
+
 									if (!$_product->is_visible() || !apply_filters('ywraq_list_show_product_permalinks', true, 'quote-view')) {
-										echo "Hello - 1";
 										echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									} else {
-										if (isset($_POST['fpd_product'])) {
-											echo "Hello - 2 - Yep";
-										} else {
-											echo "Hello - 2 - nop";
-										}
 										printf('<a href="%s">%s</a>', esc_url($_product->get_permalink()), $thumbnail); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									}
-
-									/* $thumbnail = $_product->get_image();
-
-									if (!$_product->is_visible() || !apply_filters('ywraq_list_show_product_permalinks', true, 'quote-view')) {
-										echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-									} else {
-										printf('<a href="%s">%s</a>', esc_url($_product->get_permalink()), $thumbnail); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-									} */
 									?>
 								</td>
 							<?php endif; ?>
-							<!-- MRR - END -->
 
 							<td class="product-name" data-title="<?php esc_attr_e('Product', 'yith-woocommerce-request-a-quote'); ?>">
 								<?php
