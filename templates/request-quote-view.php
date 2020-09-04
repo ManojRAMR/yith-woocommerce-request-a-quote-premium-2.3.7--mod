@@ -168,27 +168,15 @@ else :
 
 								<td class="product-thumbnail">
 									<?php
+
+
 									$thumbnail = $_product->get_image();
-									global $product, $woocommerce;
+
 									if (!$_product->is_visible() || !apply_filters('ywraq_list_show_product_permalinks', true, 'quote-view')) {
-										echo "Hello - 1";
 										echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									} else {
-										if (isset($_POST['fpd_product'])) {
-											echo "Hello - 2 - Yep";
-										} else {
-											echo "Hello - 2 - nop";
-										}
 										printf('<a href="%s">%s</a>', esc_url($_product->get_permalink()), $thumbnail); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									}
-
-									/* $thumbnail = $_product->get_image();
-
-									if (!$_product->is_visible() || !apply_filters('ywraq_list_show_product_permalinks', true, 'quote-view')) {
-										echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-									} else {
-										printf('<a href="%s">%s</a>', esc_url($_product->get_permalink()), $thumbnail); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-									} */
 									?>
 								</td>
 							<?php endif; ?>
