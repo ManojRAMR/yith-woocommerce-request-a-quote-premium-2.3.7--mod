@@ -83,15 +83,15 @@ if (!defined('YITH_YWRAQ_SAVE_QUOTE_URL')) {
 }
 
 // MRR - Define Theme Base URI
-if (!defined('THEME_BASE_URI')) {
+/* if (!defined('THEME_BASE_URI')) {
     define('THEME_BASE_URI', get_stylesheet_directory());
-}
+} */
 
 // Init custom funtions to include product image in quote page
-if (!function_exists('init_custom') && file_exists(THEME_BASE_URI . '/custom/yith_ywraq_fpd_product_image.php')) {
+/* if (!function_exists('init_custom') && file_exists(THEME_BASE_URI . '/custom/yith_ywraq_fpd_product_image.php')) {
     include_once(THEME_BASE_URI . '/custom/yith_ywraq_fpd_product_image.php');
     init_custom();
-}
+} */
 // MRR -END
 
 
