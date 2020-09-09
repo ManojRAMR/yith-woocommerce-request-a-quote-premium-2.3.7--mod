@@ -134,7 +134,7 @@ if (!class_exists('YWRAQ_Avanced_Product_Options')) {
 		 *
 		 * @return array
 		 */
-		public function ajax_add_item($postdata, $product_id, $fpd_product_thumbnail) //MRR
+		public function ajax_add_item($postdata, $product_id)
 		{
 			$yith_wapo_frontend = YITH_WAPO()->frontend;
 
@@ -144,7 +144,6 @@ if (!class_exists('YWRAQ_Avanced_Product_Options')) {
 			}
 
 			$postdata['add-to-cart'] = $product_id;
-			$postdata['fpd_product_thumbnail'] = $fpd_product_thumbnail; //MRR
 
 			$t1 = $yith_wapo_frontend->add_cart_item_data(null, $product_id, $postdata);
 

@@ -64,7 +64,7 @@ if (!class_exists('YWRAQ_WooCommerce_Composite_Products')) {
         public function __construct()
         {
 
-            add_filter('ywraq_add_item', array($this, 'add_item'), 10, 2); //MRR
+            add_filter('ywraq_add_item', array($this, 'add_item'), 10, 2);
             add_filter('yith_ywraq_item_class', array($this, 'add_class_to_composite_parent'), 10, 3);
             add_filter('yith_ywraq_item_attributes', array($this, 'add_attributes_to_composite_parent'), 10, 3);
             add_action('ywraq_after_request_quote_view_item', array($this, 'show_composit_data'), 10, 2);

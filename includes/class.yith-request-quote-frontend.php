@@ -344,9 +344,12 @@ if (!class_exists('YITH_YWRAQ_Frontend')) {
 					);
 				}
 			}
-			// MRR
-			/* wp_register_script('yith_ywraq_frontend', YITH_YWRAQ_ASSETS_URL . '/js/frontend' . $suffix . '.js', array('jquery'), YITH_YWRAQ_VERSION, true); */
+
+			// MRR - Use frontedn.js instead of frontend.min.js
 			wp_register_script('yith_ywraq_frontend', YITH_YWRAQ_ASSETS_URL . '/js/frontend' . '.js', array('jquery'), YITH_YWRAQ_VERSION, true);
+			// wp_register_script('yith_ywraq_frontend', YITH_YWRAQ_ASSETS_URL . '/js/frontend' . $suffix . '.js', array('jquery'), YITH_YWRAQ_VERSION, true); 
+			// MRR-END
+
 
 			$localize_script_args = array(
 				'ajaxurl'                             => WC_AJAX::get_endpoint('%%endpoint%%'),

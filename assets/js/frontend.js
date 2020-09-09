@@ -246,7 +246,6 @@ jQuery(document).ready(function ($) {
 
     add_to_cart_info = $cart_form.serializefiles();
 
-    // MRR - This is where the plugin set values
     add_to_cart_info.append("context", "frontend");
     add_to_cart_info.append("action", "yith_ywraq_action");
     add_to_cart_info.append("ywraq_action", "add_item");
@@ -254,7 +253,6 @@ jQuery(document).ready(function ($) {
     add_to_cart_info.append("wp_nonce", $t.data("wp_nonce"));
     add_to_cart_info.append("yith-add-to-cart", $t.data("product_id"));
 
-    // MRR- END
     var quantity = $t_wrap.find("input.qty").val();
 
     if (quantity > 0) {
