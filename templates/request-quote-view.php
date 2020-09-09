@@ -160,7 +160,6 @@ else :
 								<?php echo apply_filters('yith_ywraq_item_remove_link', sprintf('<a href="#"  data-remove-item="%s" data-wp_nonce="%s"  data-product_id="%d" class="yith-ywraq-item-remove remove" title="%s">&times;</a>', esc_attr($key), esc_attr(wp_create_nonce('remove-request-quote-' . $product_id)), esc_attr($product_id), esc_attr__('Remove this item', 'yith-woocommerce-request-a-quote')), $key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 								?>
 							</td>
-							<!-- MRR - product image add originaly without FPD design -->
 							<?php
 
 
@@ -180,7 +179,6 @@ else :
 									?>
 								</td>
 							<?php endif; ?>
-							<!-- MRR - END -->
 
 							<td class="product-name" data-title="<?php esc_attr_e('Product', 'yith-woocommerce-request-a-quote'); ?>">
 								<?php
