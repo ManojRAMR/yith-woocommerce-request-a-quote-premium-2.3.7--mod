@@ -168,7 +168,6 @@ else :
 								<td class="product-thumbnail">
 									<?php
 
-
 									$thumbnail = $_product->get_image();
 
 									if (!$_product->is_visible() || !apply_filters('ywraq_list_show_product_permalinks', true, 'quote-view')) {

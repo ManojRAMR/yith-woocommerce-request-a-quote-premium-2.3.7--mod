@@ -108,7 +108,10 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			/* session settings */
 			add_action('wp_loaded', array($this, 'init'), 30);                // Get raq after WP and plugins are loaded.
+<<<<<<< HEAD
 
+=======
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 			add_action('wp', array($this, 'maybe_set_raq_cookies'), 99);      // Set cookies.
 
 			/* email actions and filter */
@@ -524,6 +527,11 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			if (!(isset($product_raq['variation_id']) && '' !== $product_raq['variation_id'])) {
 
+<<<<<<< HEAD
+=======
+			if (!(isset($product_raq['variation_id']) && '' !== $product_raq['variation_id'])) {
+
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 				$product = wc_get_product($product_raq['product_id']);
 
 				// grouped.
@@ -535,6 +543,7 @@ if (!class_exists('YITH_Request_Quote')) {
 								$raq = array(
 									'product_id' => $item_id,
 									'quantity'   => $quantity,
+									'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'], //MRR
 								);
 
 								$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
@@ -552,6 +561,7 @@ if (!class_exists('YITH_Request_Quote')) {
 						$raq = array(
 							'product_id' => $product_raq['product_id'],
 							'quantity'   => $product_raq['quantity'],
+<<<<<<< HEAD
 							//MRR - Add FPD data to single product http header
 							'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'],
 							'fpd_product' => $product_raq['fpd_product'],
@@ -563,6 +573,12 @@ if (!class_exists('YITH_Request_Quote')) {
 						$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
 
 
+=======
+							'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'], //MRR
+						);
+
+						$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 
 						$this->raq_content[apply_filters('ywraq_quote_item_id', md5($product_raq['product_id']), $product_raq)] = $raq;
 					} else {
@@ -581,6 +597,7 @@ if (!class_exists('YITH_Request_Quote')) {
 						'product_id'   => $product_raq['product_id'],
 						'variation_id' => $product_raq['variation_id'],
 						'quantity'     => $product_raq['quantity'],
+<<<<<<< HEAD
 						//MRR - Add FPD data to variable product http header
 						'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'],
 						'fpd_product' => $product_raq['fpd_product'],
@@ -590,6 +607,12 @@ if (!class_exists('YITH_Request_Quote')) {
 
 					$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
 
+=======
+						'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'], //MRR
+					);
+
+					$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 
 					$variations = array();
 
@@ -601,7 +624,10 @@ if (!class_exists('YITH_Request_Quote')) {
 					}
 
 					$raq['variations'] = $variations;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 
 					$this->raq_content[apply_filters('ywraq_quote_item_id', md5($product_raq['product_id'] . $product_raq['variation_id']), $product_raq)] = $raq;
 				} else {
@@ -720,6 +746,7 @@ if (!class_exists('YITH_Request_Quote')) {
 			$return             = 'false';
 			$message            = '';
 			$errors             = array();
+<<<<<<< HEAD
 
 
 			$product_id         = (isset($_POST['product_id']) && is_numeric($_POST['product_id'])) ? (int) $_POST['product_id'] : false;          //phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -727,6 +754,13 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			$wapo_valid = apply_filters('ywraq_ajax_validate_uploaded_files', array());
 
+=======
+			$product_id         = (isset($_POST['product_id']) && is_numeric($_POST['product_id'])) ? (int) $_POST['product_id'] : false;          //phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$is_valid_variation = (isset($_POST['variation_id']) && !empty($_POST['variation_id'])) ? is_numeric($_POST['variation_id']) : true; //phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$fpd_product_thumbnail = (isset($_POST['fpd_product_thumbnail'])) ? $_POST['fpd_product_thumbnail'] : null; //MRR
+			$wapo_valid = apply_filters('ywraq_ajax_validate_uploaded_files', array());
+
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 			if (!empty($wapo_valid)) {
 				wp_send_json(
 					apply_filters(
@@ -744,7 +778,11 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			$postdata = $_POST; //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
+<<<<<<< HEAD
 			$postdata = apply_filters('ywraq_ajax_add_item_prepare', $postdata, $product_id);
+=======
+			$postdata = apply_filters('ywraq_ajax_add_item_prepare', $postdata, $product_id, $fpd_product_thumbnail);  //MRR
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 
 
 			if (!$is_valid) {
@@ -787,9 +825,14 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			$product_id      = apply_filters('woocommerce_add_to_quote_product_id', absint($_REQUEST['add-to-quote'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$variation_id    = empty($_REQUEST['variation_id']) ? '' : absint(wp_unslash($_REQUEST['variation_id'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+<<<<<<< HEAD
 
 			$adding_to_quote = wc_get_product($product_id);
 
+=======
+			$adding_to_quote = wc_get_product($product_id);
+			$fpd_product_thumbnail = $_REQUEST['fpd_product_thumbnail']; //MRR
+>>>>>>> e34d4ffe348727c73c11b76a33b6fa1c06f1d4a1
 			if (!$adding_to_quote) {
 				return;
 			}
@@ -814,6 +857,8 @@ if (!class_exists('YITH_Request_Quote')) {
 					'product_id'   => $product_id,
 					'variation_id' => $variation_id,
 					'quantity'     => $quantity,
+					'fpd_product_thumbnail' => $fpd_product_thumbnail, //MRR
+
 				),
 				$raq_data
 			);
