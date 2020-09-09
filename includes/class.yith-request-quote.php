@@ -555,7 +555,7 @@ if (!class_exists('YITH_Request_Quote')) {
 							//MRR - Add FPD data to single product http header
 							'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'],
 							'fpd_product' => $product_raq['fpd_product'],
-							'fpd_remove_cart_item' => $product_raq['fpd_remove_cart_item'],
+							//	'fpd_remove_cart_item' => $product_raq['fpd_remove_cart_item'],
 							//MRR-END
 
 						);
@@ -584,7 +584,7 @@ if (!class_exists('YITH_Request_Quote')) {
 						//MRR - Add FPD data to variable product http header
 						'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'],
 						'fpd_product' => $product_raq['fpd_product'],
-						'fpd_remove_cart_item' => $product_raq['fpd_remove_cart_item'],
+						//	'fpd_remove_cart_item' => $product_raq['fpd_remove_cart_item'],
 						//MRR-END
 					);
 
