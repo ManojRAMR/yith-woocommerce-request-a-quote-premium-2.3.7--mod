@@ -108,6 +108,7 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			/* session settings */
 			add_action('wp_loaded', array($this, 'init'), 30);                // Get raq after WP and plugins are loaded.
+
 			add_action('wp', array($this, 'maybe_set_raq_cookies'), 99);      // Set cookies.
 
 			/* email actions and filter */
@@ -521,7 +522,6 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			$return = '';
 
-
 			if (!(isset($product_raq['variation_id']) && '' !== $product_raq['variation_id'])) {
 
 				$product = wc_get_product($product_raq['product_id']);
@@ -552,9 +552,17 @@ if (!class_exists('YITH_Request_Quote')) {
 						$raq = array(
 							'product_id' => $product_raq['product_id'],
 							'quantity'   => $product_raq['quantity'],
+							//MRR 
+							'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'],
+							'fpd_product' => $product_raq['fpd_product'],
+							'fpd_remove_cart_item' => $product_raq['fpd_remove_cart_item'],
+							//MRR-END
+
 						);
 
 						$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
+
+
 
 						$this->raq_content[apply_filters('ywraq_quote_item_id', md5($product_raq['product_id']), $product_raq)] = $raq;
 					} else {
@@ -573,9 +581,15 @@ if (!class_exists('YITH_Request_Quote')) {
 						'product_id'   => $product_raq['product_id'],
 						'variation_id' => $product_raq['variation_id'],
 						'quantity'     => $product_raq['quantity'],
+						//MRR 
+						'fpd_product_thumbnail' => $product_raq['fpd_product_thumbnail'],
+						'fpd_product' => $product_raq['fpd_product'],
+						'fpd_remove_cart_item' => $product_raq['fpd_remove_cart_item'],
+						//MRR-END
 					);
 
 					$raq = apply_filters('ywraq_add_item', $raq, $product_raq);
+
 
 					$variations = array();
 
@@ -587,6 +601,7 @@ if (!class_exists('YITH_Request_Quote')) {
 					}
 
 					$raq['variations'] = $variations;
+
 
 					$this->raq_content[apply_filters('ywraq_quote_item_id', md5($product_raq['product_id'] . $product_raq['variation_id']), $product_raq)] = $raq;
 				} else {
@@ -604,6 +619,7 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			return $return;
 		}
+
 
 		/**
 		 * Remove an item form the request list
@@ -705,11 +721,6 @@ if (!class_exists('YITH_Request_Quote')) {
 			$message            = '';
 			$errors             = array();
 
-			//MRR Add fpd data to yith postdata
-			$fpd_product         = (isset($_POST['fpd_product'])) ? $_POST['fpd_product'] : '';
-			$fpd_product_thumbnail         = (isset($_POST['fpd_product_thumbnail'])) ? $_POST['fpd_product_thumbnail'] : '';
-
-			//MRR-END
 
 			$product_id         = (isset($_POST['product_id']) && is_numeric($_POST['product_id'])) ? (int) $_POST['product_id'] : false;          //phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$is_valid_variation = (isset($_POST['variation_id']) && !empty($_POST['variation_id'])) ? is_numeric($_POST['variation_id']) : true; //phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -776,6 +787,7 @@ if (!class_exists('YITH_Request_Quote')) {
 
 			$product_id      = apply_filters('woocommerce_add_to_quote_product_id', absint($_REQUEST['add-to-quote'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$variation_id    = empty($_REQUEST['variation_id']) ? '' : absint(wp_unslash($_REQUEST['variation_id'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
 			$adding_to_quote = wc_get_product($product_id);
 
 			if (!$adding_to_quote) {
